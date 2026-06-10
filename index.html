@@ -82,8 +82,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
 .cdesc{font-size:.85rem;color:var(--text-mut);line-height:1.6;}
 
 .services{background:#fff;padding:7rem 4rem;}
-.stop{display:flex;flex-direction:column;gap:1.2rem;margin-bottom:4rem;}
-.sintro{font-size:1rem;line-height:1.8;color:var(--text-mid);max-width:620px;}
+.stop{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-bottom:4rem;align-items:end;}
+.sintro{font-size:1rem;line-height:1.8;color:var(--text-mid);align-self:end;}
 .sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;background:var(--gray-l);border:1.5px solid var(--gray-l);border-radius:12px;overflow:hidden;}
 .sc{background:#fff;padding:2.5rem 2rem;transition:background .3s,box-shadow .3s;cursor:default;}
 .sc:hover{background:var(--gold-pale);box-shadow:inset 0 -2px 0 var(--gold-light);}
