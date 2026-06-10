@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Attyka – Biuro Architektoniczne | Piotr Trznadel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0d2b4e;--navy-mid:#1a3f6f;--navy-light:#2558a3;--navy-pale:#e8f0fb;--navy-muted:#6b8ab2;
+  --white:#fff;--off:#f7f9fc;--gray-l:#eef1f6;--gray:#c5cdd8;
+  --text:#0d1f35;--text-mid:#3d5270;--text-mut:#7a90ab;--accent:#2558a3;
+  --gold:#c8822e;
+  --gold-light:#e09840;
+  --gold-bright:#f0b050;
+  --gold-pale:#fdf3e3;
+  --gold-dark:#a06020;
+  --gold-sheen:linear-gradient(105deg,#c07828 0%,#e8a040 30%,#ffc84a 50%,#d48830 70%,#b06820 100%);
+  --gold-sheen-rev:linear-gradient(105deg,#b06820 0%,#d48830 30%,#ffc84a 50%,#e8a040 70%,#c07828 100%);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--white);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--gray-l);display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:68px;}
+.nlogo{display:flex;align-items:baseline;gap:.75rem;}
+.nname{font-family:'DM Serif Display',serif;font-style:italic;font-size:1.5rem;letter-spacing:.05em;color:var(--navy);-webkit-text-fill-color:var(--navy);}
+.nsep{width:1px;height:16px;background:var(--gray);}
+.nsub{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text-mut);}
+.nlinks{display:flex;gap:2.5rem;list-style:none;}
+.nlinks a{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-mid);text-decoration:none;transition:color .25s;}
+.nlinks a:hover{color:var(--navy);}
+.ncta{background:var(--gold)!important;color:#fff!important;padding:.5rem 1.4rem!important;border-radius:4px;}
+.ncta:hover{background:var(--gold-dark)!important;}
+
+.hero{min-height:100vh;padding-top:68px;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden;}
+.hleft{display:flex;flex-direction:column;justify-content:center;padding:6rem 3rem 6rem 4rem;position:relative;z-index:2;}
+.htag{display:inline-flex;align-items:center;gap:.6rem;background:var(--gold-pale);color:var(--gold-dark);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;padding:.45rem 1rem;border-radius:100px;margin-bottom:2.5rem;font-weight:400;width:fit-content;opacity:0;animation:fu .8s .2s forwards;border:1px solid rgba(184,112,42,.2);}
+.htag::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold-sheen);}
+.hh1{font-family:'DM Serif Display',serif;font-size:clamp(3rem,5vw,5.5rem);line-height:1.05;color:var(--navy);margin-bottom:.5rem;opacity:0;animation:fu .8s .4s forwards;}
+.hh1 em{font-style:italic;background:var(--gold-sheen);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hrole{font-size:clamp(1rem,1.8vw,1.2rem);color:var(--text-mut);margin-bottom:2.5rem;letter-spacing:.05em;opacity:0;animation:fu .8s .6s forwards;}
+.hdesc{font-size:1rem;line-height:1.8;color:var(--text-mid);max-width:420px;margin-bottom:3rem;opacity:0;animation:fu .8s .8s forwards;}
+.hact{display:flex;gap:1rem;flex-wrap:wrap;opacity:0;animation:fu .8s 1s forwards;}
+.bp{background:var(--gold);color:#fff;padding:.9rem 2rem;border-radius:6px;text-decoration:none;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;font-weight:400;transition:background .25s,transform .2s;display:inline-block;}
+.bp:hover{background:var(--gold-dark);transform:translateY(-2px);}
+.bo{border:1.5px solid var(--navy);color:var(--navy);padding:.9rem 2rem;border-radius:6px;text-decoration:none;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;font-weight:400;transition:background .25s,border-color .25s,color .25s,transform .2s;display:inline-block;}
+.bo:hover{background:var(--gold-pale);border-color:var(--gold);color:var(--gold-dark);transform:translateY(-2px);}
+
+.hright{background:var(--navy);display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:6rem 3.5rem;position:relative;overflow:hidden;opacity:0;animation:fi 1s .6s forwards;}
+.hright::before{content:'';position:absolute;top:-120px;right:-120px;width:420px;height:420px;border-radius:50%;border:1px solid rgba(255,255,255,.06);}
+.hright::after{content:'';position:absolute;bottom:-80px;left:-80px;width:300px;height:300px;border-radius:50%;border:1px solid rgba(255,255,255,.06);}
+.hgbg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:40px 40px;}
+.sstack{position:relative;z-index:2;width:100%;display:flex;flex-direction:column;}
+.srow{padding:2.2rem 0;border-bottom:1px solid rgba(255,255,255,.1);display:grid;grid-template-columns:auto 1fr;gap:2rem;align-items:center;}
+.srow:first-child{border-top:1px solid rgba(255,255,255,.1);}
+.snum{font-family:'DM Serif Display',serif;font-style:italic;font-size:3.2rem;line-height:1;background:var(--gold-sheen);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.snum span{font-size:1.4rem;background:none;-webkit-text-fill-color:rgba(255,255,255,.45);color:rgba(255,255,255,.45);}
+.stitle{font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.9);font-weight:400;margin-bottom:.25rem;}
+.ssub{font-size:.78rem;color:rgba(255,255,255,.45);line-height:1.5;}
+.hcs{position:relative;z-index:2;margin-top:3rem;display:flex;flex-direction:column;gap:.6rem;}
+.hci{display:flex;align-items:center;gap:.75rem;font-size:.82rem;color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s;}
+.hci:hover{color:var(--gold-light);}
+.hci svg{opacity:.5;flex-shrink:0;}
+
+.about{background:var(--off);padding:7rem 4rem;}
+.slabel{display:flex;align-items:center;gap:.75rem;margin-bottom:1.5rem;}
+.slabel::before{content:'';display:block;width:28px;height:2px;background:var(--gold-sheen);}
+.slabel span{font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-dark);font-weight:400;}
+.sh2{font-family:'DM Serif Display',serif;font-size:clamp(2rem,3.5vw,3rem);color:var(--navy);line-height:1.2;margin-bottom:2rem;}
+.sh2 em{font-style:italic;background:var(--gold-sheen);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.agrid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
+.atext{font-size:1rem;line-height:1.85;color:var(--text-mid);margin-bottom:2rem;}
+.ahigh{background:#fff;border-left:3px solid var(--gold-light);border-radius:0 8px 8px 0;padding:1.5rem 2rem;font-family:'DM Serif Display',serif;font-style:italic;font-size:1.1rem;color:var(--navy);line-height:1.6;box-shadow:inset 3px 0 0 0 transparent,0 2px 12px rgba(184,112,42,.08);}
+.clist{display:flex;flex-direction:column;}
+.citem{display:grid;grid-template-columns:3rem 1fr;gap:1.5rem;padding:2rem 0;border-bottom:1px solid var(--gray-l);align-items:start;transition:padding-left .3s;}
+.citem:first-child{border-top:1px solid var(--gray-l);}
+.citem:hover{padding-left:.5rem;}
+.cico{width:3rem;height:3rem;border-radius:8px;background:var(--navy-pale);display:flex;align-items:center;justify-content:center;border:1px solid rgba(13,43,78,.12);color:var(--navy);flex-shrink:0;}
+.ctitle{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--navy);font-weight:500;margin-bottom:.35rem;}
+.cdesc{font-size:.85rem;color:var(--text-mut);line-height:1.6;}
+
+.services{background:#fff;padding:7rem 4rem;}
+.stop{display:flex;flex-direction:column;gap:1.2rem;margin-bottom:4rem;}
+.sintro{font-size:1rem;line-height:1.8;color:var(--text-mid);max-width:620px;}
+.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;background:var(--gray-l);border:1.5px solid var(--gray-l);border-radius:12px;overflow:hidden;}
+.sc{background:#fff;padding:2.5rem 2rem;transition:background .3s,box-shadow .3s;cursor:default;}
+.sc:hover{background:var(--gold-pale);box-shadow:inset 0 -2px 0 var(--gold-light);}
+.scnum{font-family:'DM Serif Display',serif;font-style:italic;font-size:2rem;color:var(--gray);line-height:1;margin-bottom:1.5rem;transition:color .3s;}
+.sc:hover .scnum{background:var(--gold-sheen);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.sciw{width:44px;height:44px;border-radius:10px;background:var(--navy-pale);display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem;transition:background .3s;border:1px solid rgba(13,43,78,.1);color:var(--navy);}
+.sc:hover .sciw{background:#fff;border-color:rgba(13,43,78,.15);}
+.sctitle{font-size:.82rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--navy);margin-bottom:.8rem;}
+.scdesc{font-size:.82rem;color:var(--text-mut);line-height:1.7;}
+
+.upraws{background:var(--navy);padding:7rem 4rem;color:#fff;}
+.upraws .slabel::before{background:var(--gold-sheen);}
+.upraws .slabel span{color:var(--gold-light);}
+.upraws .sh2{color:#fff;}
+.upraws .sh2 em{background:var(--gold-sheen);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.ulayout{display:grid;grid-template-columns:1fr 2fr;gap:5rem;align-items:start;}
+.usticky{position:sticky;top:6rem;}
+.utext{font-size:.92rem;line-height:1.9;color:rgba(255,255,255,.55);margin-top:2rem;}
+.ibadge{display:inline-flex;align-items:center;gap:.6rem;margin-top:2rem;background:rgba(192,120,40,.12);border:1px solid rgba(232,160,64,.4);border-radius:8px;padding:1rem 1.5rem;font-size:.78rem;color:var(--gold-light);line-height:1.5;box-shadow:0 0 12px rgba(232,160,64,.1);}
+.ibadge strong{display:block;color:var(--gold-bright);font-weight:500;font-size:.82rem;}
+.ugrid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.08);border-radius:12px;overflow:hidden;}
+.uc{background:rgba(255,255,255,.03);padding:2rem;transition:background .3s;}
+.uc:hover{background:rgba(192,120,40,.08);}
+.ucat{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.5rem;}
+.uname{font-size:.85rem;color:rgba(255,255,255,.85);line-height:1.55;font-weight:300;}
+.udot{width:6px;height:6px;background:var(--gold-bright);border-radius:50%;margin-bottom:1rem;box-shadow:0 0 6px rgba(240,176,80,.6);}
+
+.contact{background:var(--off);padding:7rem 4rem;}
+.clayout{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
+.cbody{font-size:1rem;line-height:1.8;color:var(--text-mid);margin-top:1.5rem;margin-bottom:2.5rem;}
+.cinfo{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.crow{display:flex;flex-direction:column;gap:.35rem;padding:1.4rem 1.2rem;border-bottom:1px solid var(--gray-l);border-right:1px solid var(--gray-l);}
+.crow:nth-child(2n){border-right:none;}
+.crow:first-child,.crow:nth-child(2){border-top:1px solid var(--gray-l);}
+.clbl{font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;color:var(--text-mut);font-weight:400;}
+.cval{font-size:.9rem;color:var(--text);line-height:1.5;}
+.cval a{color:var(--navy);text-decoration:none;font-weight:500;transition:color .2s;}
+.cval a:hover{color:var(--navy-light);}
+.mapp{border-radius:12px;height:300px;display:block;overflow:hidden;border:1px solid var(--gray);margin-top:1.5rem;text-decoration:none;position:relative;}
+.mapp iframe{width:100%;height:100%;border:0;display:block;}
+.mapp-overlay{position:absolute;inset:0;display:flex;align-items:flex-end;padding:1rem 1.2rem;background:linear-gradient(to top,rgba(13,43,78,.55) 0%,transparent 60%);color:#fff;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;pointer-events:none;}
+.mapp-overlay span{display:flex;align-items:center;gap:.4rem;}
+
+footer{background:var(--navy);padding:2.5rem 4rem;display:flex;align-items:center;justify-content:space-between;}
+.flogo{font-family:'DM Serif Display',serif;font-style:italic;font-size:1.3rem;letter-spacing:.08em;background:var(--gold-sheen);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.fcopy{font-size:.72rem;color:rgba(255,255,255,.35);letter-spacing:.1em;}
+.fright{font-size:.7rem;color:rgba(255,255,255,.35);text-align:right;line-height:1.6;}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .75s,transform .75s;}
+.reveal.visible{opacity:1;transform:none;}
+@keyframes fu{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@keyframes fi{from{opacity:0}to{opacity:1}}
+@keyframes shimmer{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.hh1 em,.sh2 em,.snum,.flogo,.nname{background-size:200% auto;animation-name:shimmer;animation-duration:4s;animation-timing-function:linear;animation-iteration-count:infinite;}
+
+@media(max-width:900px){
+  nav{padding:0 1.5rem;}.nlinks{display:none;}
+  .hero{grid-template-columns:1fr;min-height:auto;}
+  .hleft{padding:3rem 1.5rem 2rem;}.hright{padding:3rem 1.5rem;}
+  .srow{gap:1.2rem;padding:1.5rem 0;}.snum{font-size:2.2rem;}
+  .about{padding:4rem 1.5rem;}.agrid{grid-template-columns:1fr;gap:3rem;}
+  .services{padding:4rem 1.5rem;}.stop{grid-template-columns:1fr;gap:2rem;}.sgrid{grid-template-columns:1fr;}
+  .upraws{padding:4rem 1.5rem;}.ulayout{grid-template-columns:1fr;gap:3rem;}.ugrid{grid-template-columns:1fr;}
+  .contact{padding:4rem 1.5rem;}.clayout{grid-template-columns:1fr;gap:3rem;}
+  footer{flex-direction:column;gap:1rem;padding:2rem 1.5rem;text-align:center;}.fright{text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nlogo">
+    <span class="nname">Attyka</span>
+    <div class="nsep"></div>
+    <span class="nsub">Biuro Architektoniczne</span>
+  </div>
+  <ul class="nlinks">
+    <li><a href="#o-mnie">O mnie</a></li>
+    <li><a href="#uslugi">Usługi</a></li>
+    <li><a href="#uprawnienia">Uprawnienia</a></li>
+    <li><a href="#kontakt" class="ncta">Kontakt</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hleft">
+    <div class="htag">Wodzisław Śląski &nbsp;·&nbsp; Śląsk</div>
+    <h1 class="hh1">Piotr<br><em>Trznadel</em></h1>
+    <p class="hrole">Architekt &amp; Inżynier Budownictwa</p>
+    <p class="hdesc">Ponad 23 lata doświadczenia w projektowaniu i kierowaniu budowami. Uprawnienia konstrukcyjno-budowlane bez ograniczeń. Kompleksowa obsługa — od projektu po odbiór.</p>
+    <div class="hact">
+      <a href="#kontakt" class="bp">Skontaktuj się</a>
+      <a href="#uslugi" class="bo">Zobacz usługi</a>
+    </div>
+  </div>
+  <div class="hright">
+    <div class="hgbg"></div>
+    <div class="sstack">
+      <div class="srow">
+        <div class="snum">23<span>+</span></div>
+        <div><div class="stitle">Lata doświadczenia</div><div class="ssub">W projektowaniu i kierowaniu budowami</div></div>
+      </div>
+      <div class="srow">
+        <div class="snum">&#8734;</div>
+        <div><div class="stitle">Bez ograniczeń</div><div class="ssub">Uprawnienia konstrukcyjno-budowlane</div></div>
+      </div>
+      <div class="srow">
+        <div class="snum">19<span>lat</span></div>
+        <div><div class="stitle">Śląska OIIB</div><div class="ssub">Czynny członek izby od 2005 roku</div></div>
+      </div>
+    </div>
+    <div class="hcs">
+      <a class="hci" href="tel:507340044">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
+        507 340 044
+      </a>
+      <a class="hci" href="https://maps.google.com/?q=Skrzyszowska+4e,+44-300+Wodzisław+Śląski" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        ul. Skrzyszowska 4e, Wodzisław Śl.
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="o-mnie">
+  <div class="agrid">
+    <div class="reveal">
+      <div class="slabel"><span>O mnie</span></div>
+      <h2 class="sh2">Rzetelność<br>i <em>doświadczenie</em></h2>
+      <p class="atext">Jestem architektem i inżynierem budownictwa z ponad 23-letnim doświadczeniem zawodowym. Posiadam pełne uprawnienia konstrukcyjno-budowlane bez ograniczeń do projektowania oraz kierowania robotami budowlanymi wszystkich kategorii.</p>
+      <p class="atext">Od 2005 roku jestem czynnym członkiem Śląskiej Okręgowej Izby Inżynierów Budownictwa. Każde zlecenie realizuję z najwyższą starannością i pełną odpowiedzialnością zawodową.</p>
+      <div class="ahigh">Gwarantuję rzetelne i uczciwe wykonywanie powierzonych obowiązków.</div>
+    </div>
+    <div class="clist reveal">
+      <div class="citem"><div class="cico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div><div><div class="ctitle">Wykształcenie</div><div class="cdesc">Wyższe techniczne — budownictwo. Kompleksowa wiedza z zakresu architektury, konstrukcji i inżynierii.</div></div></div>
+      <div class="citem"><div class="cico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="12" y2="17"/></svg></div><div><div class="ctitle">Uprawnienia budowlane</div><div class="cdesc">Uprawnienia konstrukcyjno-budowlane bez ograniczeń — do projektowania i kierowania budowami.</div></div></div>
+      <div class="citem"><div class="cico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div><div><div class="ctitle">Izba inżynierów</div><div class="cdesc">Czynny członek Śląskiej OIIB nieprzerwanie od 2005 roku.</div></div></div>
+      <div class="citem"><div class="cico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 3 22 21 22 21 11"/><polyline points="2 11 12 2 22 11"/><line x1="12" y1="22" x2="12" y2="11"/></svg></div><div><div class="ctitle">Doświadczenie projektowe</div><div class="cdesc">Realizacje od domów jednorodzinnych po obiekty przemysłowe, hale stalowe i budynki użyteczności publicznej.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="uslugi">
+  <div class="stop reveal">
+    <div>
+      <div class="slabel"><span>Zakres usług</span></div>
+      <h2 class="sh2">Pełna obsługa<br><em>inwestycji</em></h2>
+    </div>
+    <p class="sintro">Oferuję kompleksowy zakres usług budowlanych i architektonicznych — od koncepcji i projektu, przez nadzór, aż po końcowy odbiór techniczny. Każde zlecenie realizuję z zaangażowaniem i odpowiedzialnością.</p>
+  </div>
+  <div class="sgrid reveal">
+    <div class="sc"><div class="scnum">01</div><div class="sciw"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div class="sctitle">Kierownik budowy</div><div class="scdesc">Pełnienie funkcji kierownika budowy na wszystkich typach obiektów. Nadzór nad realizacją zgodnie z projektem i przepisami prawa.</div></div>
+    <div class="sc"><div class="scnum">02</div><div class="sciw"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><div class="sctitle">Odbiory mieszkań i domów</div><div class="scdesc">Profesjonalny odbiór techniczny nieruchomości. Kontrola zgodności z projektem i normami — przed podpisaniem protokołu.</div></div>
+    <div class="sc"><div class="scnum">03</div><div class="sciw"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="22" height="13" rx="1"/><line x1="1" y1="11" x2="23" y2="11"/><line x1="7" y1="6" x2="7" y2="19"/><polyline points="1 6 4 3 20 3 23 6"/></svg></div><div class="sctitle">Projektowanie hal</div><div class="scdesc">Kompleksowe projekty hal produkcyjnych, magazynowych i handlowych z optymalizacją funkcji i konstrukcji.</div></div>
+    <div class="sc"><div class="scnum">04</div><div class="sciw"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg></div><div class="sctitle">Konstrukcje metalowe</div><div class="scdesc">Projektowanie stalowych konstrukcji nośnych, wiat, zadaszenia, mezzanine. Obliczenia statyczne i rysunki wykonawcze.</div></div>
+    <div class="sc"><div class="scnum">05</div><div class="sciw"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div class="sctitle">Projektowanie domów</div><div class="scdesc">Projekty indywidualne i adaptacje projektów gotowych. Domy jednorodzinne, bliźniaki, zabudowa szeregowa.</div></div>
+    <div class="sc"><div class="scnum">06</div><div class="sciw"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div><div class="sctitle">Kosztorysy, ekspertyzy, audyty</div><div class="scdesc">Kosztorysy inwestorskie, ekspertyzy budowlane, świadectwa energetyczne i audyty energetyczne budynków.</div></div>
+  </div>
+</section>
+
+<section class="upraws" id="uprawnienia">
+  <div class="ulayout">
+    <div class="usticky reveal">
+      <div class="slabel"><span>Uprawnienia</span></div>
+      <h2 class="sh2">Pełna<br><em>legitymacja</em><br>zawodowa</h2>
+      <p class="utext">Uprawnienia budowlane bez ograniczeń umożliwiają mi realizację projektów i nadzór nad budowami obiektów wszelkich kategorii, typów i skali.</p>
+      <div class="ibadge"><div><strong>Śląska OIIB</strong>Czynny członek od 2005 roku</div></div>
+    </div>
+    <div class="ugrid reveal">
+      <div class="uc"><div class="udot"></div><div class="ucat">Specjalność</div><div class="uname">Uprawnienia konstrukcyjno-budowlane bez ograniczeń</div></div>
+      <div class="uc"><div class="udot"></div><div class="ucat">Zakres — projektowanie</div><div class="uname">Projektowanie obiektów budowlanych wszystkich typów i kategorii</div></div>
+      <div class="uc"><div class="udot"></div><div class="ucat">Zakres — kierowanie</div><div class="uname">Kierowanie robotami budowlanymi bez ograniczeń kategorii obiektów</div></div>
+      <div class="uc"><div class="udot"></div><div class="ucat">Nadzór</div><div class="uname">Inspektor nadzoru inwestorskiego — wszystkie branże</div></div>
+      <div class="uc"><div class="udot"></div><div class="ucat">Adaptacje</div><div class="uname">Adaptacja projektów gotowych do warunków miejscowych</div></div>
+      <div class="uc"><div class="udot"></div><div class="ucat">Ekspertyzy</div><div class="uname">Opinie i ekspertyzy techniczne dotyczące stanu obiektów</div></div>
+      <div class="uc"><div class="udot"></div><div class="ucat">Energetyka</div><div class="uname">Świadectwa charakterystyki energetycznej budynków</div></div>
+      <div class="uc"><div class="udot"></div><div class="ucat">Kosztorysowanie</div><div class="uname">Kosztorysy inwestorskie i robocze, audyty energetyczne</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="kontakt">
+  <div class="clayout">
+    <div class="reveal">
+      <div class="slabel"><span>Kontakt</span></div>
+      <h2 class="sh2">Porozmawiajmy<br>o Twojej <em>inwestycji</em></h2>
+      <p class="cbody">Zapraszam do kontaktu w celu omówienia szczegółów projektu lub umówienia konsultacji. Odpowiadam konkretnie i bez zbędnej zwłoki.</p>
+      <a href="tel:507340044" class="bp">Zadzwoń: 507 340 044</a>
+    </div>
+    <div class="reveal">
+      <div class="cinfo">
+        <div class="crow"><div class="clbl">Firma</div><div class="cval">Attyka – Biuro Architektoniczne</div></div>
+        <div class="crow"><div class="clbl">Architekt</div><div class="cval">inż. Piotr Trznadel</div></div>
+        <div class="crow"><div class="clbl">Telefon</div><div class="cval"><a href="tel:507340044">507 340 044</a></div></div>
+        <div class="crow"><div class="clbl">E-mail</div><div class="cval"><a href="mailto:piotrtrznadel@o2.pl">piotrtrznadel@o2.pl</a></div></div>
+        <div class="crow"><div class="clbl">Adres</div><div class="cval"><a href="https://maps.google.com/?q=Skrzyszowska+4e,+44-300+Wodzisław+Śląski" target="_blank" rel="noopener">ul. Skrzyszowska 4e<br>44-300 Wodzisław Śląski</a></div></div>
+        <div class="crow"><div class="clbl">Region</div><div class="cval">Śląsk, Rybnik, Jastrzębie, Racibórz i okolice</div></div>
+        <div class="crow"><div class="clbl">Izba</div><div class="cval">Śląska OIIB — członek od 2005 r.</div></div>
+      </div>
+      <div class="mapp">
+        <iframe
+          src="https://maps.google.com/maps?q=Skrzyszowska+4e,+Wodzislaw+Slaski&output=embed&z=16"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Lokalizacja biura Attyka – ul. Skrzyszowska 4e, Wodzisław Śląski">
+        </iframe>
+        <a class="mapp-overlay" href="https://maps.google.com/?q=Skrzyszowska+4e,+44-300+Wodzisław+Śląski" target="_blank" rel="noopener" style="pointer-events:auto;">
+          <span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Otwórz w Google Maps ↗
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="flogo">Attyka</div>
+  <div class="fcopy">© 2025 Attyka Biuro Architektoniczne. Wszelkie prawa zastrzeżone.</div>
+  <div class="fright">Śląska OIIB<br>Członek od 2005 roku</div>
+</footer>
+
+<script>
+const io=new IntersectionObserver((e)=>{e.forEach((r,i)=>{if(r.isIntersecting){setTimeout(()=>r.target.classList.add('visible'),i*90);io.unobserve(r.target);}});},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}});});
+</script>
+</body>
+</html>
